@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Data
 @NoArgsConstructor
@@ -25,23 +26,27 @@ public class Student {
     private String name;
     private String email;
     private LocalDate dob;
+
+    @Transient
     private Integer age;
     private String address;
 
-    public Student(String name, String email, LocalDate dob, Integer age,String address) {
+    public Student(String name, String email, LocalDate dob,String address) {
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
         this.address=address;
     }
 
-    public Student(Long id, String name, String email, LocalDate dob, Integer age,String address) {
+    public Student(Long id, String name, String email, LocalDate dob,String address) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
         this.address=address;
+    }
+
+    public Integer getAge() {
+        return Period.between(this.dob,LocalDate.now()).getYears();
     }
 }
