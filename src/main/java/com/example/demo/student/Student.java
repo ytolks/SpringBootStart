@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.Period;
+import java.time.Period;;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +15,7 @@ public class Student {
 
     @Id
     @SequenceGenerator(
-            name ="student_sequence",
+            name = "student_sequence",
             sequenceName = "student_sequence",
             allocationSize = 1)
     @GeneratedValue(
@@ -29,24 +29,25 @@ public class Student {
 
     @Transient
     private Integer age;
+
     private String address;
 
-    public Student(String name, String email, LocalDate dob,String address) {
+    public Student(String name, String email, LocalDate dob, String address) {
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.address=address;
+        this.address = address;
     }
 
-    public Student(Long id, String name, String email, LocalDate dob,String address) {
+    public Student(Long id, String name, String email, LocalDate dob, String address) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.address=address;
+        this.address = address;
     }
 
     public Integer getAge() {
-        return Period.between(this.dob,LocalDate.now()).getYears();
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 }
